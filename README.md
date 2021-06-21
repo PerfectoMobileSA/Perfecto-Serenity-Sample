@@ -37,6 +37,7 @@ TestNG Plugin is built-in in the IntelliJ IDEA, from version 7 onwards.
 
 ## Running the sample as is
 - Provide cloudName and securityToken in `serenity.properties` file.
+- Update perfecto.capabilities.* capabilitites in `serenity.properties` file.
 - To run a single test, run `mvn verify -P single`
 - To run parallel tests, run `mvn verify -P parallel`
 
@@ -50,6 +51,6 @@ TestNG Plugin is built-in in the IntelliJ IDEA, from version 7 onwards.
 		-Dreportium-job-number=${BUILD_NUMBER} 
 		-Dreportium-job-tags=${myTag}
 
-
-
+##Note:
+It is recommended to use different Jobs for different platforms in order to avoid flacky parallel executions.
 

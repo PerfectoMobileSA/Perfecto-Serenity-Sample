@@ -8,9 +8,8 @@ import java.text.ParseException;
 
 import com.perfecto.cucumber.pages.LocalPage;
 
-import cucumber.api.java.en.Then;
 
-//import io.cucumber.java.en.Then;
+import io.cucumber.java.en.Then;
 
 
 public class LocalCheckSteps {

@@ -30,8 +30,12 @@ public class GooglePage extends PageObject {
     }
 
     public void submitForm() throws Exception {
-        searchButton.click();
-        Thread.sleep(5000);
+       try {
+    	   searchButton.click();
+           Thread.sleep(5000);
+	} catch (Exception e) {
+		search.sendKeys(Keys.ENTER);
+	}
     }
 
     public void titleShouldMatch(String matchTitle) {

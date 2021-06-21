@@ -8,11 +8,17 @@ import com.perfecto.reportium.model.Project;
 import com.perfecto.reportium.test.TestContext;
 import com.perfecto.reportium.test.result.TestResult;
 import com.perfecto.reportium.test.result.TestResultFactory;
+
+import net.serenitybdd.core.environment.WebDriverConfiguredEnvironment;
 import net.thucydides.core.model.DataTable;
 import net.thucydides.core.model.Story;
 import net.thucydides.core.model.TestOutcome;
 import net.thucydides.core.model.TestTag;
 import net.thucydides.core.steps.*;
+import net.thucydides.core.util.SystemEnvironmentVariables;
+import net.thucydides.core.webdriver.SerenityWebdriverManager;
+import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
+import net.thucydides.core.webdriver.WebDriverFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +26,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+
+import org.openqa.selenium.WebDriver;
 
 import static net.thucydides.core.model.TestResult.FAILURE;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
@@ -31,13 +39,6 @@ public class PerfectoListener implements StepListener {
 
 	@Override
 	public void testSuiteStarted(Class<?> aClass) {
-//		PerfectoExecutionContext perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-//				.withProject(new Project("My Project", "1.0"))
-//				.withJob(new Job("My Job", 45))
-//				.withContextTags("tag1")
-//				.withWebDriver(getDriver())
-//				.build();
-//		reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
 
 	}
 
@@ -54,55 +55,56 @@ public class PerfectoListener implements StepListener {
 
 	@Override
 	public void testStarted(String s) {
-		String jobName = System.getProperty("reportium-job-name");
-		String jobNumber = System.getProperty("reportium-job-number");
-		String tag = System.getProperty("reportium-job-tags") != null ? System.getProperty("reportium-job-tags") : "tag";
-		PerfectoExecutionContext perfectoExecutionContext = null;
-		if(jobName!=null && jobNumber!=null) {
-			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-					.withProject(new Project("PerfectoSerenity Project", "1.0"))
-					.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
-					.withContextTags(tag)
-					.withWebDriver(getDriver())
-					.build();
-		}else {
-			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-					.withProject(new Project("PerfectoSerenity Project", "1.0"))
-					//.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
-					.withContextTags(tag)
-					.withWebDriver(getDriver())
-					.build();
-		}
-
-		reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
-		reportiumClient.testStart(s,new TestContext());
-
+//		System.out.println(s +"is started with : "+System.getProperty("environment"));
+//		String jobName = System.getProperty("reportium-job-name");
+//		String jobNumber = System.getProperty("reportium-job-number");
+//		String tag = System.getProperty("reportium-job-tags") != null ? System.getProperty("reportium-job-tags") : "tag";
+//		PerfectoExecutionContext perfectoExecutionContext = null;
+//		if(jobName!=null && jobNumber!=null) {
+//			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+//					.withProject(new Project("Perfecto Serenity Project", "1.0"))
+//					.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
+//					.withContextTags(tag)
+//					.withWebDriver(getDriver())
+//					.build();
+//		}else {
+//			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+//					.withProject(new Project("PerfectoSerenity Project", "1.0"))
+//					//.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
+//					.withContextTags(tag)
+//					.withWebDriver(getDriver())
+//					.build();
+//		}
+//
+//		reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
 	}
 
 	@Override
 	public void testStarted(String s, String s1) {
-		String jobName = System.getProperty("reportium-job-name");
-		String jobNumber = System.getProperty("reportium-job-number");
-		String tag = System.getProperty("reportium-job-tags") != null ? System.getProperty("reportium-job-tags") : "tag";
-		PerfectoExecutionContext perfectoExecutionContext = null;
-		if(jobName!=null && jobNumber!=null) {
-			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-					.withProject(new Project("PerfectoSerenity Project", "1.0"))
-					.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
-					.withContextTags(tag)
-					.withWebDriver(getDriver())
-					.build();
-		}else {
-			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-					.withProject(new Project("PerfectoSerenity Project", "1.0"))
-					//.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
-					.withContextTags(tag)
-					.withWebDriver(getDriver())
-					.build();
-		}
-
-		reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
-		reportiumClient.testStart(s,new TestContext());
+//		new PerfectoSerenityDriver().newDriver();
+//		ThucydidesWebDriverSupport.useDriver(PerfectoSerenityDriver.getDriver());
+//		System.out.println(s +"is started with : "+System.getProperty("environment")+": s1 is :"+s1);
+//		String jobName = System.getProperty("reportium-job-name");
+//		String jobNumber = System.getProperty("reportium-job-number");
+//		String tag = System.getProperty("reportium-job-tags") != null ? System.getProperty("reportium-job-tags") : "tag";
+//		PerfectoExecutionContext perfectoExecutionContext = null;
+//		if(jobName!=null && jobNumber!=null) {
+//			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+//					.withProject(new Project("PerfectoSerenity Project", "1.0"))
+//					.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
+//					.withContextTags(tag)
+//					.withWebDriver(getDriver())
+//					.build();
+//		}else {
+//			perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+//					.withProject(new Project("PerfectoSerenity Project", "1.0"))
+//					//.withJob(new Job(jobName, Integer.parseInt(jobNumber)))
+//					.withContextTags(tag)
+//					.withWebDriver(getDriver())
+//					.build();
+//		}
+//		reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
+		PerfectoSerenityDriver.getReportiumClient().testStart(s,new TestContext());
 
 	}
 
@@ -123,14 +125,11 @@ public class PerfectoListener implements StepListener {
 		.build();
 		System.out.println("Outcome: "+testOutcome.isSuccess());
 		if (testOutcome.isSuccess()) {
-			reportiumClient.testStop(TestResultFactory.createSuccess(), context);
+			PerfectoSerenityDriver.getReportiumClient().testStop(TestResultFactory.createSuccess(), context);
 		}else if (testOutcome.isFailure() || testOutcome.isError() || exc!=null) {
-			reportiumClient.testStop(TestResultFactory.createFailure(exc), context);
+			PerfectoSerenityDriver.getReportiumClient().testStop(TestResultFactory.createFailure(exc), context);
 		}
 
-		System.out.println("Done");
-		System.out.println("Quit driver");
-		getDriver().quit();
 	}
 
 	@Override
@@ -140,7 +139,7 @@ public class PerfectoListener implements StepListener {
 
 	@Override
 	public void stepStarted(ExecutedStepDescription executedStepDescription) {
-		reportiumClient.stepStart(executedStepDescription.getName());
+		PerfectoSerenityDriver.getReportiumClient().stepStart(executedStepDescription.getName());
 
 	}
 

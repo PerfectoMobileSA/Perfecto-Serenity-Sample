@@ -10,8 +10,10 @@ import com.perfecto.PerfectoSerenityDriver;
 import com.perfecto.cucumber.pages.GooglePage;
 import com.perfecto.reportium.test.TestContext;
 
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+
 
 //import io.cucumber.java.en.Then;
 //import io.cucumber.java.en.When;

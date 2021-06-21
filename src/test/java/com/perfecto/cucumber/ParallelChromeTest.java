@@ -3,14 +3,16 @@ package com.perfecto.cucumber;
 
 import org.junit.runner.RunWith;
 
+import com.perfecto.PerfectoSerenityTest;
 
-import cucumber.api.CucumberOptions;
+import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/single.feature",
-tags = { "@googleSearch" })
-public class ParallelChromeTest {
+tags = "@googleSearch",
+glue="com.perfecto.cucumber.steps")
+public class ParallelChromeTest extends PerfectoSerenityTest {
 
 	
 }

@@ -8,9 +8,9 @@ import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features = "src/test/resources/features/second.feature",
-tags = "@googleSearch",
+@CucumberOptions(features = "src/test/resources/features/appium.feature",
+tags = "@expenseTracker",
 glue="com.perfecto.cucumber.steps")
-public class ParallelFirefoxTest extends PerfectoSerenityTest {
+public class AndroidTest1 extends PerfectoSerenityTest {
 
 }
